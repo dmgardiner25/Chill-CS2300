@@ -409,6 +409,7 @@ ul {
 .content {
   padding-top: 80px;
   background: transparent;
+  padding-bottom: 40px;
 }
 
 .loop {
@@ -422,11 +423,16 @@ ul {
 
 .popular {
   background: transparent;
+  position: relative;
 }
 
 .carousel {
   background: transparent;
   margin-top: 20px;
+}
+
+.content div {
+  background: transparent;
 }
 
 .carousel h1 {
@@ -440,11 +446,42 @@ ul {
 }
 
 .item {
-  background: white;
-  margin-left: -5px;
+  background: transparent;
   width: 300px;
 }
 
-.loop div {
+.children {
+  margin-bottom: 100px;
+}
+
+
+
+
+
+/* WATCH PAGE */
+.video-page {
+  background: #141414; 
+}
+
+.video {
+  text-align: center;
+  margin-top: 100px;
+  background: transparent;
+}
+
+.video div {
+  background: transparent;
+}
+
+.video-info {
+  text-align: left;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  background: transparent;
+}
+
+.video-info h1 {
+  color: #E5E5E5;
   background: transparent;
 }

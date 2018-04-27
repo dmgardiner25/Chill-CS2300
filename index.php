@@ -15,8 +15,8 @@ if(!isset($email) && empty($email)){
 $result = mysqli_query($link, "SELECT * FROM prof WHERE email = '$email'");
 $row = mysqli_fetch_assoc($result);
 $pic=$row['picture'];
-?>
 
+?>
 
 <!doctype html>
 <html lang="en">
@@ -38,14 +38,10 @@ $pic=$row['picture'];
     <link href="/dashboard/images/favicon.png" rel="icon" type="image/png" />
 
     <!-- BOOSTRAP -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-        crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
     <!-- OWL CAROUSEL -->
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,400italic,300italic' rel='stylesheet' type='text/css'>
@@ -99,88 +95,151 @@ $pic=$row['picture'];
     </nav>
     <div class="content">
         <div class="carousel popular">
-            <h1>Popular on Flixnet</h1>
+            <!-- INSERT VIDEOS
+            insert into inventory (name, director, rating, genre, picture, popular) values
+            Picture: 900x460
+            -->
+
+            <h1>Popular on Flixnet CANCEL SUBSCRIPTION</h1>
             <div class="loop owl-carousel">
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
+                <?php
+                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE popular = 1");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class=\"item\">";
+                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "</div>";
+                    }
+                ?>
             </div>
-            <div class="carousel popular">
+        </div>
+        <div class="carousel movies">
             <h1>Movies</h1>
             <div class="loop owl-carousel">
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
-                <div class="item">
-                    <img src="images/Flixnet/movie_posters/inception.jpg">
-                </div>
+                <?php
+                    $result = mysqli_query($link, "SELECT * FROM inventory, movie WHERE inventory.vid = movie.vid");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class=\"item\">";
+                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "</div>";
+                    }
+                ?>
             </div>
-            <div class="carousel popular">
+        </div>
+        <div class="carousel">
             <h1>TV Shows</h1>
             <div class="loop owl-carousel">
+                <?php
+                    $result = mysqli_query($link, "SELECT * FROM inventory, tv_show WHERE inventory.vid = tv_show.vid");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class=\"item\">";
+                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "</div>";
+                    }
+                ?>
+            </div>
+        </div>
+        <div class="carousel movies">
+            <h1>Comedy</h1>
+            <div class="loop owl-carousel">
+                <?php
+                    $result = mysqli_query($link, "SELECT * FROM inventory ORDER BY RAND() LIMIT 2");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class=\"item\">";
+                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "</div>";
+                    }
+                ?>
+            </div>
+        </div>
+        <div class="carousel movies">
+            <h1>Horror</h1>
+            <div class="loop owl-carousel">
+                <?php
+                    $result = mysqli_query($link, "SELECT * FROM inventory, movie WHERE inventory.vid = movie.vid");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class=\"item\">";
+                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "</div>";
+                    }
+                ?>
+            </div>
+        </div>
+        <div class="carousel movies">
+            <h1>Action</h1>
+            <div class="loop owl-carousel">
+                <?php
+                    $result = mysqli_query($link, "SELECT * FROM inventory ORDER BY RAND() LIMIT 2");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class=\"item\">";
+                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "</div>";
+                    }
+                ?>
+            </div>
+        </div>
+        <div class="carousel movies">
+            <h1>Crime</h1>
+            <div class="loop owl-carousel">
+                <?php
+                    $result = mysqli_query($link, "SELECT * FROM inventory ORDER BY RAND() LIMIT 2");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class=\"item\">";
+                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "</div>";
+                    }
+                ?>
+            </div>
+        </div>
+        <div class="carousel movies">
+            <h1>Biography</h1>
+            <div class="loop owl-carousel">
+                <?php
+                    $result = mysqli_query($link, "SELECT * FROM inventory ORDER BY RAND() LIMIT 2");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class=\"item\">";
+                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "</div>";
+                    }
+                ?>
+            </div>
+        </div>
+        <div class="carousel movies">
+            <h1>Romance</h1>
+            <div class="loop owl-carousel">
+                <?php
+                    $result = mysqli_query($link, "SELECT * FROM inventory ORDER BY RAND() LIMIT 2");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class=\"item\">";
+                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "</div>";
+                    }
+                ?>
+            </div>
+        </div>
+        <div class="carousel movies">
+            <h1>Sci-Fi</h1>
+            <div class="loop owl-carousel">
+                <?php
+                    $result = mysqli_query($link, "SELECT * FROM inventory ORDER BY RAND() LIMIT 2");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class=\"item\">";
+                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "</div>";
+                    }
+                ?>
+            </div>
+        </div>
+        <div class="carousel children">
+            <h1>Children</h1>
+            <div class="loop owl-carousel">
+                <?php
+                    $result = mysqli_query($link, "SELECT * FROM inventory ORDER BY RAND() LIMIT 2");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class=\"item\">";
+                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "</div>";
+                    }
+                ?>
             </div>
         </div>
         <script>
