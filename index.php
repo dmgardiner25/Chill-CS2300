@@ -18,6 +18,11 @@ $result = mysqli_query($link, "SELECT * FROM prof WHERE email = '$email'");
 $row = mysqli_fetch_assoc($result);
 $pic=$row['picture'];
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $_SESSION["search"] = $_POST["search"];
+    header("location: search.php");
+}
+
 ?>
 
 <!doctype html>
@@ -60,7 +65,7 @@ $pic=$row['picture'];
 
 <body class="home">
     <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand nav-img" href="#">
+        <a class="navbar-brand nav-img" href="/">
             <img class="nav-img" src="images/Flixnet/flixnet_logo.png" alt="Flixnet Logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -71,18 +76,18 @@ $pic=$row['picture'];
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home<a>
+                    <a class="nav-link" href="/">Home<a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">TV Shows</a>
+                    <a class="nav-link" href="shows.php">TV Shows</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Movies</a>
+                    <a class="nav-link" href="movies.php">Movies</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-search btn-secondary" type="submit">Search</span>
+            <form class="form-inline my-2 my-lg-0" method="POST">
+                <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-secondary btn-search" type="submit">Search</button>
                 </button>
             </form>
             <div class="nav-item dropdown">
@@ -98,7 +103,10 @@ $pic=$row['picture'];
     <div class="content">
         <div class="carousel popular">
             <!-- INSERT VIDEOS
-            insert into inventory (name, director, rating, genre, picture, popular) values
+            insert into inventory (name, director, rating, genre, picture, popular, video_link, description) values
+            insert into movie values 
+            insert into tv_show values
+            insert into actors values
             Picture: 900x460
             -->
 
@@ -121,7 +129,7 @@ $pic=$row['picture'];
                     $result = mysqli_query($link, "SELECT * FROM inventory, movie WHERE inventory.vid = movie.vid");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
-                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
                         echo "</div>";
                     }
                 ?>
@@ -134,7 +142,7 @@ $pic=$row['picture'];
                     $result = mysqli_query($link, "SELECT * FROM inventory, tv_show WHERE inventory.vid = tv_show.vid");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
-                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
                         echo "</div>";
                     }
                 ?>
@@ -144,10 +152,10 @@ $pic=$row['picture'];
             <h1>Comedy</h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory ORDER BY RAND() LIMIT 2");
+                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Comedy\" ORDER BY RAND()");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
-                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
                         echo "</div>";
                     }
                 ?>
@@ -157,10 +165,10 @@ $pic=$row['picture'];
             <h1>Horror</h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory, movie WHERE inventory.vid = movie.vid");
+                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Horror\" ORDER BY RAND()");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
-                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
                         echo "</div>";
                     }
                 ?>
@@ -170,10 +178,10 @@ $pic=$row['picture'];
             <h1>Action</h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory ORDER BY RAND() LIMIT 2");
+                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Action\" ORDER BY RAND()");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
-                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
                         echo "</div>";
                     }
                 ?>
@@ -183,23 +191,23 @@ $pic=$row['picture'];
             <h1>Crime</h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory ORDER BY RAND() LIMIT 2");
+                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Crime\" ORDER BY RAND()");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
-                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
                         echo "</div>";
                     }
                 ?>
             </div>
         </div>
         <div class="carousel movies">
-            <h1>Biography</h1>
+            <h1>Documentary</h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory ORDER BY RAND() LIMIT 2");
+                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Documentary\" ORDER BY RAND()");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
-                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
                         echo "</div>";
                     }
                 ?>
@@ -209,10 +217,10 @@ $pic=$row['picture'];
             <h1>Romance</h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory ORDER BY RAND() LIMIT 2");
+                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Romance\" ORDER BY RAND()");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
-                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
                         echo "</div>";
                     }
                 ?>
@@ -222,10 +230,10 @@ $pic=$row['picture'];
             <h1>Sci-Fi</h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory ORDER BY RAND() LIMIT 2");
+                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Sci-Fi\" ORDER BY RAND()");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
-                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
                         echo "</div>";
                     }
                 ?>
@@ -235,10 +243,10 @@ $pic=$row['picture'];
             <h1>Children</h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory ORDER BY RAND() LIMIT 2");
+                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Children\" ORDER BY RAND()");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
-                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
                         echo "</div>";
                     }
                 ?>
