@@ -85,8 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Picture upload
     $picture = $_FILES['pic_to_upload']['name'];
 
-    echo "Picture: " . $picture;
-
     if (!$picture) {
         $picture = "empty_profile.gif";
     }

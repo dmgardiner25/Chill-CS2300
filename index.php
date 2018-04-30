@@ -2,11 +2,12 @@
 // Include config file
 require_once 'config.php';
 
-
 $email = $_SESSION['email'];
 
+echo $email;
+
 /* UNCOMMENT FOR LOGIN */
-if(!isset($email) && empty($email)){
+if(!isset($email) || empty($email)){
     header("location: signin.php");
     exit;
 }
@@ -95,6 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <img class="prof_img dropdown-toggle" <?php echo 'src="images/Flixnet/prof_pics/'.$pic.'"'; ?>>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="profile.php">Profile</a>
                     <a class="dropdown-item" href="logout.php">Logout</a>
                 </div>
             </div>

@@ -5,7 +5,7 @@ $email = $_SESSION['email'];
 $movie = "";
 
 /* UNCOMMENT FOR LOGIN */
-if(!isset($email) && empty($email)){
+if(!isset($email) || empty($email)){
     header("location: signin.php");
     exit;
 }
