@@ -3,6 +3,10 @@
   src: url('../Fonts/NimbusSanL-Reg.otf');
 }
 
+* {
+  font-family: "Nimbus", sans-serif;
+}
+
 .input {
   background: #F3F3F3;
 }
@@ -530,4 +534,252 @@ ul {
   background: transparent;
   float: left;
   width: 33%;
+}
+
+/* PROFILE */
+.prof {
+  background: #141414;
+}
+
+.right2 {
+  margin-top: -14px;
+}
+
+.container {
+  padding-top: 100px;
+}
+
+.profile {
+  margin: 20px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #f3f3f3;
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  margin-left: 25%;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #000;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #e50914;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+}
+
+.profile-usermenu ul li:active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li:active {
+  color: #d1454c;
+  background-color: #f6f9fb;
+  border-left: 2px solid #7c0107;
+}
+
+/* Profile Content */
+.prof-info {
+  background: #f3f3f3;
+  padding: 20px;
+}
+
+.prof-info h1 {
+  font-size: 24px;
+  color: #e50914;
+  font-weight: bold;
+}
+
+.basic-info {
+  width: 48%;
+  float: left;
+}
+
+.sub-info {
+  width: 48%;
+  float: right;
+}  
+
+.sub-info input[type=button] {
+  background: #E50914;
+  box-shadow: 0px 1px #6E6E6E;
+  padding: 12px 20px;
+  color: white;
+  height: 50px;
+  border-style: none;
+  margin-top: 25px;
+  font-size: 18px;
+  width: 49%;
+}
+
+.sub-info input[type=submit] {
+  background: #E50914;
+  box-shadow: 0px 1px #6E6E6E;
+  padding: 12px 20px;
+  color: white;
+  height: 50px;
+  border-style: none;
+  margin-top: 25px;
+  font-size: 18px;
+  width: 49%;
+}
+
+.basic-div {
+  float: left;
+  width: 54%;
+  margin-top: 8px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.basic-div input[type=file] {
+  color: transparent;
+}
+
+.basic-input {
+  width: 90%;
+}
+
+.edit-desc {
+  float: left;
+  width: 46%;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+
+.btn-left {
+  float: left;
+}
+
+.btn-right {
+  float: right;
+}
+
+.basic-content {
+  float: left;
+  width: 54%;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.sub-content {
+  float: left;
+  width: 44%;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}  
+
+.basic-desc {
+  float: left;
+  width: 46%;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+.sub-desc {
+  float: left;
+  width: 56%;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  font-weight: bold;
+} 
+
+.line { 
+  border-left: 2px solid lightgrey;
+  height: 100%;
+  float: left;
+  margin-left: 16px;
+}
+
+.p-border{
+  border: 1px solid lightgrey;
+  background: white;
+  overflow: hidden;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.zip {
+  margin-bottom: 0px;
+}
+
+.pay {
+  margin-bottom: 0px;
+}
+
+.p-border p { 
+  border-bottom: 1px solid lightgrey;
 }
