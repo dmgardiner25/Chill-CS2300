@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             Picture: 900x460
             -->
 
-            <h1>Popular on Flixnet CANCEL SUBSCRIPTION BEE MOVIE</h1>
+            <h1>Popular on Flixnet</h1>
             <div class="loop owl-carousel">
                 <?php
                     $result = mysqli_query($link, "SELECT * FROM inventory WHERE popular = 1");

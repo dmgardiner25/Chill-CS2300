@@ -118,6 +118,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
+
+    $result = mysqli_query($link, "SELECT pid FROM prof WHERE email = '$email'");
+    $row    = mysqli_fetch_assoc($result);
+    $pid    = $row["pid"];
+    echo $pid;
     
     if(!empty($_POST['radio'])) {
         $type=$_POST['radio'];
@@ -155,6 +160,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Close statement
         mysqli_stmt_close($stmt);
     }
+
+
 
     // Validate holder_name
     if (empty(trim($_POST['holder_name']))) {
