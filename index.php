@@ -11,6 +11,8 @@ if(!isset($email) && empty($email)){
     exit;
 }
 
+$_SESSION["vid"] = "";
+
 // Get user's profile picture
 $result = mysqli_query($link, "SELECT * FROM prof WHERE email = '$email'");
 $row = mysqli_fetch_assoc($result);
@@ -100,13 +102,13 @@ $pic=$row['picture'];
             Picture: 900x460
             -->
 
-            <h1>Popular on Flixnet CANCEL SUBSCRIPTION</h1>
+            <h1>Popular on Flixnet CANCEL SUBSCRIPTION BEE MOVIE</h1>
             <div class="loop owl-carousel">
                 <?php
                     $result = mysqli_query($link, "SELECT * FROM inventory WHERE popular = 1");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
-                        echo "<img src=\"images/Flixnet/movie_posters/".$row['picture']."\">";
+                        echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
                         echo "</div>";
                     }
                 ?>
@@ -264,6 +266,17 @@ $pic=$row['picture'];
         $(document).ready(function () {
             $(".owl-carousel").owlCarousel();
         });
+    </script>
+    <script>
+        function send_to_watch(vid) {
+            console.log(vid);
+            $.ajax({
+                method: "POST",
+                url: "setseshvid.php",
+                data:{action: vid},
+            });
+        window.location = "watch.php";
+        }
     </script>
 </body>
 </html>

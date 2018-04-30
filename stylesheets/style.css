@@ -3,11 +3,6 @@
   src: url('../Fonts/NimbusSanL-Reg.otf');
 }
 
-* {
-  background-color: black;
-  outline: none;
-}
-
 .input {
   background: #F3F3F3;
 }
@@ -26,11 +21,13 @@ body {
 .log-in {
   background: url("../images/Flixnet/login-the-crown_2-1500x1000.jpg") no-repeat top center;
   background-size: cover;
+  background-color: black;
 }
 
 .register {
   background: url("../images/Flixnet/605188-cool-movie-posters-wallpapers-1920x1080v2.jpg") no-repeat top left;
   background-size: cover;
+  background-color: black;
 }
 
 .plans {
@@ -454,13 +451,11 @@ ul {
   margin-bottom: 100px;
 }
 
-
-
-
-
 /* WATCH PAGE */
 .video-page {
   background: #141414; 
+  border: 1px solid transparent;
+  padding-bottom: 100px;
 }
 
 .video {
@@ -473,15 +468,66 @@ ul {
   background: transparent;
 }
 
-.video-info {
+.video h1 {
   text-align: left;
   width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
+  background: transparent;
+  color: #E5E5E5;
+}
+
+.generic-info {
+  text-align: left;
+  width: 1000px;
+  margin: auto;
   background: transparent;
 }
 
-.video-info h1 {
+.generic-info h1 {
   color: #E5E5E5;
   background: transparent;
+}
+
+.generic-info p {
+  background: transparent;
+  float: left;
+  width: 33%;
+  color: #E5E5E5;
+}
+
+.right {
+  margin-top: -15px;
+}
+
+.vid-info {
+  width: 1000px;
+  margin: auto;
+  background: transparent;
+}
+
+.vid-info p {
+  background: transparent;
+  text-align: left;
+  color: #E5E5E5;
+}
+
+.vid-info div {
+  background: transparent;
+}
+
+.vid-info hr {
+  border-top: 1px solid white;
+}
+
+.spec-info {
+  text-align: left;
+  width: 1000px;
+  margin: auto;
+  background: transparent;
+}
+
+.spec-info p {
+  background: transparent;
+  float: left;
+  width: 33%;
 }

@@ -17,5 +17,8 @@ if(!session_id())
 if(!isset($_SESSION['email'])) {
     $_SESSION['email'] = "";
 }
+if(!isset($_SESSION['vid'])) {
+    $_SESSION['vid'] = "";
+}
 
 ?>
