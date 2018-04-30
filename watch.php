@@ -19,7 +19,6 @@ $vid = $_SESSION['vid'];
 // Get user's profile picture
 $result = mysqli_query($link, "SELECT * FROM inventory WHERE vid = '$vid'");
 $vid_info = mysqli_fetch_assoc($result);
-$title=$vid_info['name'];
 
 function asDollars($value) {
     return '$' . number_format($value, 2);
@@ -72,18 +71,13 @@ function asDollars($value) {
         </div>
     </nav>
     <div class="video">
-        <h1 class="title"><?php echo $title ?></h1>
+        <h1 class="title"><?php echo $vid_info['name'] ?></h1>
         <div class="video-player">
             <iframe width="1000" height="563" src="<?php echo $vid_info['video_link'] ?>" align="middle" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
         <div class="vid-info">
             <hr>
             <p><?php echo $vid_info['description'] ?></p>
-            <div class="generic-info">
-                <p><strong>Director</strong>: <?php echo $vid_info['director'] ?></p>
-                <p><strong>Rating</strong>: <?php echo $vid_info['rating'] ?></p>
-                <p><strong>Genre</strong>: <?php echo $vid_info['genre'] ?></p>
-            </div>
             <?php 
                 $actors = "";
                 $result = mysqli_query($link, "SELECT * FROM actors WHERE vid = '$vid'");
@@ -91,8 +85,15 @@ function asDollars($value) {
                     $actors .= $vid_info['actor'] . ", ";
                 }
                 $actors = substr($actors, 0, strlen($actors)-2);
-                echo "<p><strong>Actors</strong>: ".$actors."</p>"
+                echo "<p><strong>Actors</strong>: ".$actors."</p>";
+                $result = mysqli_query($link, "SELECT * FROM inventory WHERE vid = '$vid'");
+                $vid_info = mysqli_fetch_assoc($result);
             ?>
+            <div class="generic-info">
+                <p><strong>Director</strong>: <?php echo $vid_info['director'] ?></p>
+                <p><strong>Rating</strong>: <?php echo $vid_info['rating'] ?></p>
+                <p><strong>Genre</strong>: <?php echo $vid_info['genre'] ?></p>
+            </div>
             <?php 
                 $result = mysqli_query($link, "SELECT * FROM movie WHERE vid = '$vid'");
             ?>
