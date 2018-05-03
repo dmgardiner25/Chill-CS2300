@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "flixnet";
+$dbname = "chill";
 
 /* Attempt to connect to MySQL database */
 $link = mysqli_connect($servername, $username, $password, $dbname);

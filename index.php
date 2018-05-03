@@ -4,10 +4,9 @@ require_once 'config.php';
 
 $email = $_SESSION['email'];
 
-echo $email;
-
 /* UNCOMMENT FOR LOGIN */
-if(!isset($email) || empty($email)){
+if(empty($email)){
+    echo "HELLO";
     header("location: signin.php");
     exit;
 }
@@ -37,13 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Use title if it's in the page YAML frontmatter -->
-    <title>Flixnet</title>
+    <title>Chill</title>
 
     <meta name="description" content="XAMPP is an easy to install Apache distribution containing MariaDB, PHP and Perl." />
     <meta name="keywords" content="xampp, apache, php, perl, mariadb, open source distribution" />
     <meta http-equiv="Cache-control" content="no-cache">
-
-    <link href="/dashboard/images/favicon.png" rel="icon" type="image/png" />
 
     <!-- BOOSTRAP -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -66,8 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body class="home">
     <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand nav-img" href="/">
-            <img class="nav-img" src="images/Flixnet/flixnet_logo.png" alt="Flixnet Logo">
+        <a class="navbar-brand nav-img" href="index.php">
+            <img class="nav-img" src="images/Flixnet/chill_logo.png" alt="Chill Logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -77,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home<a>
+                    <a class="nav-link" href="index.php">Home<a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="shows.php">TV Shows</a>
@@ -112,10 +109,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             Picture: 900x460
             -->
 
-            <h1>Popular on Flixnet</h1>
+            <h1>Popular on Chill <?php  
+                $result = mysqli_query($link, "SELECT * FROM inventory WHERE popular = 1 ORDER BY RAND()");    
+                echo " - " . mysqli_num_rows($result);
+            ?></h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE popular = 1");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
                         echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
@@ -125,10 +124,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <div class="carousel movies">
-            <h1>Movies</h1>
+            <h1>Movies <?php  
+                $result = mysqli_query($link, "SELECT * FROM inventory, movie WHERE inventory.vid = movie.vid ORDER BY RAND()");    
+                echo " - " . mysqli_num_rows($result);
+            ?></h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory, movie WHERE inventory.vid = movie.vid");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
                         echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
@@ -138,10 +139,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <div class="carousel">
-            <h1>TV Shows</h1>
+            <h1>TV Shows <?php  
+                $result = mysqli_query($link, "SELECT * FROM inventory, tv_show WHERE inventory.vid = tv_show.vid ORDER BY RAND()");    
+                echo " - " . mysqli_num_rows($result);
+            ?></h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory, tv_show WHERE inventory.vid = tv_show.vid");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
                         echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
@@ -151,10 +154,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <div class="carousel movies">
-            <h1>Comedy</h1>
+            <h1>Comedy <?php  
+                $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Comedy\" ORDER BY RAND()");    
+                echo " - " . mysqli_num_rows($result);
+            ?></h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Comedy\" ORDER BY RAND()");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
                         echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
@@ -164,10 +169,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <div class="carousel movies">
-            <h1>Horror</h1>
+            <h1>Horror <?php  
+                $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Horror\" ORDER BY RAND()");    
+                echo " - " . mysqli_num_rows($result);
+            ?></h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Horror\" ORDER BY RAND()");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
                         echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
@@ -177,10 +184,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <div class="carousel movies">
-            <h1>Action</h1>
+            <h1>Action <?php  
+                $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Action\" ORDER BY RAND()");    
+                echo " - " . mysqli_num_rows($result);
+            ?></h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Action\" ORDER BY RAND()");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
                         echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
@@ -190,10 +199,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <div class="carousel movies">
-            <h1>Crime</h1>
+            <h1>Crime <?php  
+                $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Crime\" ORDER BY RAND()");    
+                echo " - " . mysqli_num_rows($result);
+            ?></h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Crime\" ORDER BY RAND()");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
                         echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
@@ -203,36 +214,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <div class="carousel movies">
-            <h1>Documentary</h1>
+            <h1>Documentary <?php  
+                $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Documentary\" ORDER BY RAND()");    
+                echo " - " . mysqli_num_rows($result);
+            ?></h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Documentary\" ORDER BY RAND()");
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<div class=\"item\">";
-                        echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
-                        echo "</div>";
-                    }
-                ?>
-            </div>
-        </div>
-        <div class="carousel movies">
-            <h1>Romance</h1>
-            <div class="loop owl-carousel">
-                <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Romance\" ORDER BY RAND()");
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<div class=\"item\">";
-                        echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
-                        echo "</div>";
-                    }
-                ?>
-            </div>
-        </div>
-        <div class="carousel movies">
-            <h1>Sci-Fi</h1>
-            <div class="loop owl-carousel">
-                <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Sci-Fi\" ORDER BY RAND()");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
                         echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";
@@ -242,10 +229,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <div class="carousel children">
-            <h1>Children</h1>
+            <h1>Children <?php  
+                $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Children\" ORDER BY RAND()");    
+                echo " - " . mysqli_num_rows($result);
+            ?></h1>
             <div class="loop owl-carousel">
                 <?php
-                    $result = mysqli_query($link, "SELECT * FROM inventory WHERE genre = \"Children\" ORDER BY RAND()");
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<div class=\"item\">";
                         echo "<a href=\"watch.php\"></a><img src=\"images/Flixnet/movie_posters/".$row['picture']."\" onclick=\"send_to_watch(".$row["vid"].")\"></a>";

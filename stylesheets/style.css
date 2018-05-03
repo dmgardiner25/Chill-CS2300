@@ -136,7 +136,7 @@ body {
 }
 
 .info input[type=submit] {
-  background: #E50914;
+  background: #154FFF;
   box-shadow: 0px 1px #6E6E6E;
   padding: 12px 20px;
   color: white;
@@ -359,6 +359,10 @@ tr:nth-child(even) {
   color: white;
   font-size: 14px;
   margin-right: 7px;
+}
+
+.nav-link:hover {
+  color: #154FFF;
 }
 
 ul {
@@ -584,7 +588,7 @@ ul {
 
 .profile-usertitle-job {
   text-transform: uppercase;
-  color: #e50914;
+  color: #154FFF;
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 15px;
@@ -652,7 +656,7 @@ ul {
 
 .prof-info h1 {
   font-size: 24px;
-  color: #e50914;
+  color: #154FFF;
   font-weight: bold;
 }
 
@@ -667,7 +671,7 @@ ul {
 }  
 
 .sub-info input[type=button] {
-  background: #E50914;
+  background: #154FFF;
   box-shadow: 0px 1px #6E6E6E;
   padding: 12px 20px;
   color: white;
@@ -679,7 +683,7 @@ ul {
 }
 
 .sub-info input[type=submit] {
-  background: #E50914;
+  background: #154FFF;
   box-shadow: 0px 1px #6E6E6E;
   padding: 12px 20px;
   color: white;

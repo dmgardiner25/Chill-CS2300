@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             save the username to the session */
                             session_start();
                             $_SESSION['email'] = $email;
-                            header("location: /");
+                            header("location: index.php");
                         } else {
                             // Display an error message if password is not valid
                             $password_err = 'The password you entered was not valid.';
@@ -94,16 +94,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Use title if it's in the page YAML frontmatter -->
-    <title>Flixnet</title>
+    <title>Chill</title>
     <meta name="description" content="XAMPP is an easy to install Apache distribution containing MariaDB, PHP and Perl." />
     <meta name="keywords" content="xampp, apache, php, perl, mariadb, open source distribution" />
     <meta http-equiv="Cache-control" content="no-cache">
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
-    <link href="images/favicon.png" rel="icon" type="image/png" />
+    <link href="https://photos-3.dropbox.com/t/2/AAAe92EgbXgeonk-d36KcegkK_uiCpftIRR-QH8Gno83Uw/12/312984599/png/32x32/1/_/1/2/favicon.png/EOq-pswEGJDOCiACKAI/WtlLIt8vWQXV1rwCYWxmCBEtFF87kuX-cFklLNMCp2k?preserve_transparency=1&size=2048x1536&size_mode=3" rel="icon" type="image/png" />
 </head>
 
 <body class="log-in">
-    <img class="logo" src="images/Flixnet/flixnet_logo.png" alt="Flixnet Logo">
+    <img class="logo" src="images/Flixnet/chill_logo.png" alt="Chill Logo">
     <div class="login">
         <h1>Sign In</h1>
         <form class="info" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">

@@ -111,9 +111,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 $msg = "Failed to upload image";
             }
-            
+
             // Attempt to execute the prepared statement
             if (!mysqli_stmt_execute($stmt)) {
+                $valid = false;
                 echo "Something went wrong. Please try again later. (Prof)";
             }
         }
@@ -132,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Create subscription
-    $sql = "INSERT INTO subscription (cost, type, length, pid) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO subscription (cost, type, pid) VALUES (?, ?, ?)";
     
     if($valid) {
         if ($stmt = mysqli_prepare($link, $sql)) {
@@ -145,9 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $cost = 13.99;
             }
             
-            $length = 1;
-            
-            mysqli_stmt_bind_param($stmt, "dsii", $cost, $type, $length, $pid);
+            mysqli_stmt_bind_param($stmt, "dsi", $cost, $type, $pid);
             
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
@@ -267,7 +266,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (mysqli_stmt_execute($stmt)) {
                 // Redirect to login page
                 $_SESSION['email'] = $email;
-                header("location: /");
+                header("location: index.php");
             } else {
                 echo "Something went wrong. Please try again later. (Owner)";
             }
@@ -286,12 +285,13 @@ mysqli_close($link);
 
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <title>Chill</title>
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
     <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://photos-3.dropbox.com/t/2/AAAe92EgbXgeonk-d36KcegkK_uiCpftIRR-QH8Gno83Uw/12/312984599/png/32x32/1/_/1/2/favicon.png/EOq-pswEGJDOCiACKAI/WtlLIt8vWQXV1rwCYWxmCBEtFF87kuX-cFklLNMCp2k?preserve_transparency=1&size=2048x1536&size_mode=3" rel="icon" type="image/png" />
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -311,7 +311,7 @@ mysqli_close($link);
 </head>
 
 <body class="register">
-    <img class="logo" src="images/Flixnet/flixnet_logo.png" alt="Flixnet Logo">
+    <img class="logo" src="images/Flixnet/chill_logo.png" alt="Chill Logo">
     <div class="sign-up">
         <h1>Sign Up</h1>
         <form class="info" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
